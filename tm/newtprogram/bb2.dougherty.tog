@@ -1,0 +1,33 @@
+Turing Machine Simulator Version 5.0       Mon Mar 18 19:12:12 2013
+
+Your name:       Dougherty Kevin
+tog file:        bb2.dougherty.tog
+Tape file:       bb2.t
+Definition file: bb2.tm
+
+1
+{}
+
+1 ? 1 L 2
+2 ? 1 R 1
+1 1 1 R 1
+
+Total number of states     = 2
+Total number of quintuples = 3
+
+------------------------------ TAPE  1 ---------------------------------
+^                                                         4
+------------------------------------------------------------------------
+     [1> 
+    [2> 1
+    1[1>1
+    11[1> 
+    1[2>11
+
+       4 quintuple(s) executed
+       1's left on tape: 3                     Wrong
+       1's expected:     4
+
+tog file = bb2.dougherty.tog  2/3/4/3
+d3e6 Report for Dougherty Kevin: 1 error detected
+1178 Mon Mar 18 19:12:12 2013

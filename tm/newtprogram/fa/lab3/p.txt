@@ -1,0 +1,305 @@
+            Deterministic pda Simulator Version 1.7
+
+ +-------------------------------------------------------------+
+ | This software is provided to you on an "as is" basis for    |
+ | instructional purposes only, without any warranties,        |
+ | expressed or implied.  Neither the author nor the publisher |
+ | shall be liable in any event for incidental, consequential, |
+ | special, or punitive damages in connection with, or arising |
+ | out of the distribution, performance, or use of this        |
+ | software.                                                   |
+ +-------------------------------------------------------------+
+
+
+RUNNING THE pda SIMULATOR
+-------------------------
+
+To run the pda simulator, enter
+
+
+p quintuplefilename_less-extension
+
+
+The extension ".p" is assumed for the quintuple file name.  The 
+tape file name is assumed to be the same as the quintuple file 
+name but with the extension is ".pp". 
+
+
+Name file p.ppp
+---------------
+
+When the simulator is run for the first time, it prompts for the 
+user's name:
+
+Enter familyname firstname middleinitial (if any)  
+
+After the user enters this information, the simulator saves it in 
+a file named p.ppp.  It then inserts this name information in all 
+the trace files it subsequently creates. If the name entered is 
+not correct, the p.ppp file can be directly edited with any text 
+editor.  Alternatively, the p.ppp file can be deleted.  Then 
+when the simulator is run again, it will prompt for and read in 
+new name information.  
+
+
+QUINTUPLE FILE
+--------------
+
+The first line of the quintuple file should contain the start 
+state of the pda.  The start state can be any integer. A comment 
+can appear on the same line as the start state, following the 
+start state.    
+
+The final states (i.e., accept states) are listed on the second 
+line of the quintuple file.  A final state can be any integer.  
+Succesive final states should be separated by at least one blank.  
+A comment that does not start with an integer can appear to the 
+right of the list of final states. 
+  
+If no final states are given, the second line should be 
+completely blank or contain a comment that does not start with an 
+integer.  If no final states are given, the simulator will accept 
+by the empty stack criterion.  
+
+If the character & appears on the second line, the simulator will 
+accept by final state and empty stack.  If final states are 
+specifed but & does not appear, the simulator will accept by 
+final state.   
+
+Examples: 
+
+If second line is 
+
+0 1 2 3 
+
+acceptance is by final state.  
+
+If the second line is
+
+0 1 2 3  &
+
+acceptance is by final state and empty stack.  
+
+If the second line is completely blank or contains just a comment 
+that does not start with an integer, acceptance is by empty 
+stack. 
+
+
+The quintuples for the pda should start on the third line.  One 
+quintuple should be specified per line.  Blank lines can appear 
+before and/or after any quintuple line.  The components of a 
+quintuple should be specified in the following order: 
+
+
+CURRENTSTATE CURRENTINPUT TOPOFSTACK NEWSTATE PUSHSTRING
+
+
+One or more spaces should separate each component of a quintuple. 
+CURRENTSTATE and NEWSTATE can be any integer. 
+
+CURRENTINPUT and TOPOFSTACK can be any non-blank character.  
+Use ? to represent a blank.  CURRENTINPUT, TOPOFSTACK, and/or 
+PUSHSTRING can be ^, where ^ designates the null string.  
+
+PUSHSTRING can be any string.  Use ^ to represent the null 
+string.
+
+Comments can appear to the right of each quintuple.
+
+Sample quintuple file:
+
+0                Start state
+0 4              Final states
+0 ^ ^ 1 $        This pda accepts {a^nb^n | n >= 0}
+1 a $ 2 a$   
+2 a a 2 aa
+2 b a 3 ^        ^ represents null string
+3 b a 3 ^
+3 ^ $ 4 ^    
+
+
+INPUT TAPE FILE
+---------------
+
+The input tape file should consist of one or more lines.  Each 
+line represents one input tape.  An input tape can consist of any 
+sequence of characters.  Blanks embedded within an input tape 
+should be represented by ? (one ? for each blank).  A completely 
+blank input tape is represented by a single ?. 
+
+The pda simulator treats each line in the tape file as a separate 
+input tape and makes one run for each line. If one or more final 
+states are specified and either the letter a or the letter r 
+preceded by at least one blank appears on the right of a tape, 
+the result of the run--ACCEPT or REJECT--is checked.  If the 
+letter a is specified, the result should be ACCEPT; if the letter 
+r is specified, the result should be REJECT.  If the result 
+differs from that specified on the tape, the error message 
+"Wrong" appears at the end of the trace for that tape, and the 
+error message "Errors detected" appears at the bottom of the 
+trace for the entire run.  If no errors are detected during an 
+entire run, the message "No errors detected" appears at the 
+bottom of the trace for the entire run.  
+
+
+Sample input tape file: 
+
+?                                                            a
+ab                                                           a
+aabb                                                         a
+abab                                                         r
+abb                                                          r
+aab                                                          r
+a                                                            r
+b                                                            r
+
+
+
+TRACE
+-----
+
+The trace generated by the simulator is written to BOTH the 
+display screen and a file with the same name as the quintuple 
+file but with the extension ".<familyname>.pog", where 
+<familyname> is the family name the user enters when running the 
+simulator for the first time.  If, however, the user enters 
+his/her family name prefixed with a hyphen, then the family name 
+is not incorporated in the trace file name (but the user's name 
+still appears in the trace file). 
+
+The trace consists of "snapshots" of the current configuration of 
+the machine in the format 
+
+     STACK <CURRENTSTATE> REMAININGINPUT
+
+If more than one quintuple can be applied to a given machine 
+configuration, the first listed first in the quintuple file is 
+used.  Processing by the pda stops whenever a configuration to 
+which no quintuple applies occurs.  
+
+The simulator pauses after each input tape is run.  Hitting any 
+key except g or G, causes the simulator to run the next tape.  
+Hitting g or G at a pause causes the simulator to run the 
+remaining tapes without pauses.  The simulator also pauses 
+periodically when running an input tape which requires more moves 
+than can be shown on the display screen at one time.  At such a 
+pause, hitting s or S (s means stop) cancels further simulation 
+on the current tape.  Hitting g or G causes the simulator to run 
+without any pauses.  Hitting any other key continues the 
+simulation on the current tape. 
+
+
+
+SAMPLE QUINTUPLE AND TAPE FILES
+-------------------------------
+
+The pda simulator package includes two pairs of sample 
+quintuple/input tape files: 
+
+Quintuple file   Input Tape file        Description
+
+q1.p               q1.pp          Accepts { a^nb^n | n >= 0 } by final state
+q2.p               q2.pp          Accepts all strings with equal 
+                                  number of a's and b's
+
+Here is the pog file that the simulator generates for q1.p and 
+q1.pp:
+
+
+pda Simulator Version 1.7       Sat Dec 11 07:23:29 2010
+
+Your name:       DosReis Anthony J
+pog file:        q1.pog
+Quintuple file:  q1.p
+Tape file:       q1.pp
+Start state:     0
+Final states:    0 4 
+Accept by final state
+Quintuples (curstate curinput topofstack newstate pushstring)
+
+0 ^ ^ 1 $        This pda accepts {a^nb^n | n >= 0}
+1 a $ 2 a$   
+2 a a 2 aa
+2 b a 3 ^        ^ represents null string
+3 b a 3 ^
+3 ^ $ 4 ^    
+
+Total number of quintuples = 6
+
+-------------------------------- TAPE 1 --------------------------------
+?                                                            a
+------------------------------------------------------------------------
+<0>
+       ACCEPT by final state
+       0 quintuples executed
+-------------------------------- TAPE 2 --------------------------------
+ab                                                           a
+------------------------------------------------------------------------
+<0>ab
+$<1>ab
+$a<2>b
+$<3>
+<4>
+       ACCEPT by final state
+       4 quintuples executed
+-------------------------------- TAPE 3 --------------------------------
+aabb                                                         a
+------------------------------------------------------------------------
+<0>aabb
+$<1>aabb
+$a<2>abb
+$aa<2>bb
+$a<3>b
+$<3>
+<4>
+       ACCEPT by final state
+       6 quintuples executed
+-------------------------------- TAPE 4 --------------------------------
+abab                                                         r
+------------------------------------------------------------------------
+<0>abab
+$<1>abab
+$a<2>bab
+$<3>ab
+<4>ab
+       REJECT by final state
+       4 quintuples executed
+-------------------------------- TAPE 5 --------------------------------
+abb                                                          r
+------------------------------------------------------------------------
+<0>abb
+$<1>abb
+$a<2>bb
+$<3>b
+<4>b
+       REJECT by final state
+       4 quintuples executed
+-------------------------------- TAPE 6 --------------------------------
+aab                                                          r
+------------------------------------------------------------------------
+<0>aab
+$<1>aab
+$a<2>ab
+$aa<2>b
+$a<3>
+       REJECT by final state
+       4 quintuples executed
+-------------------------------- TAPE 7 --------------------------------
+a                                                            r
+------------------------------------------------------------------------
+<0>a
+$<1>a
+$a<2>
+       REJECT by final state
+       2 quintuples executed
+-------------------------------- TAPE 8 --------------------------------
+b                                                            r
+------------------------------------------------------------------------
+<0>b
+$<1>b
+       REJECT by final state
+       1 quintuples executed
+
+pog file = q1.pog
+Report for DosReis Anthony J: No errors detected
+36fe ===================================== Sat Dec 11 07:23:29 2010

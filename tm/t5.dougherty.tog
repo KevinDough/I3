@@ -1,0 +1,255 @@
+Turing Machine Simulator Version 7.0       Wed Apr 10 00:06:19 2013
+
+Your name:       Dougherty Kevin
+tog file:        t5.dougherty.tog
+Tape file:       t5.t
+Definition file: t5.tm
+
+1
+{11}
+
+1 a x R 3
+
+3 a a R 3
+3 b b R 3
+3 c c R 4
+4 a y L 5
+4 z z R 4
+4 b b R 4
+4 y y R 4
+5 y y L 5
+5 c c L 5
+5 b b L 5
+5 a a L 5
+5 x x R 1
+5 z z L 5
+
+1 b k R 7
+7 b b R 7
+7 a a R 7
+7 c c R 8
+8 a a R 8
+8 b z L 9
+8 z z R 8
+8 x x R 8
+8 y y R 8
+9 a a L 9
+9 y y L 9
+9 c c L 9
+9 x x L 9
+9 b b L 9
+9 k k R 1
+9 z z L 9
+1 c c R 10
+10 y y R 10
+10 z z R 10
+10 _ 1 R 11
+
+Number of states: 9
+Number of quintuples: 34
+
+------------------------------ TAPE  1 ---------------------------------
+c              a
+------------------------------------------------------------------------
+     [ 1>c
+     c[10> 
+     c1[11> 
+       ACCEPT       2 quintuple(s) executed
+
+------------------------------ TAPE  2 ---------------------------------
+aca            a
+------------------------------------------------------------------------
+     [ 1>aca
+     x[ 3>ca
+     xc[ 4>a
+     x[ 5>cy
+     [ 5>xcy
+     x[ 1>cy
+     xc[10>y
+     xcy[10> 
+     xcy1[11> 
+       ACCEPT       8 quintuple(s) executed
+
+------------------------------ TAPE  3 ---------------------------------
+bcb            a
+------------------------------------------------------------------------
+     [ 1>bcb
+     k[ 7>cb
+     kc[ 8>b
+     k[ 9>cz
+     [ 9>kcz
+     k[ 1>cz
+     kc[10>z
+     kcz[10> 
+     kcz1[11> 
+       ACCEPT       8 quintuple(s) executed
+
+------------------------------ TAPE  4 ---------------------------------
+aacaa          a
+------------------------------------------------------------------------
+     [ 1>aacaa
+     x[ 3>acaa
+     xa[ 3>caa
+     xac[ 4>aa
+     xa[ 5>cya
+     x[ 5>acya
+     [ 5>xacya
+     x[ 1>acya
+     xx[ 3>cya
+     xxc[ 4>ya
+     xxcy[ 4>a
+     xxc[ 5>yy
+     xx[ 5>cyy
+     x[ 5>xcyy
+     xx[ 1>cyy
+     xxc[10>yy
+     xxcy[10>y
+     xxcyy[10> 
+     xxcyy1[11> 
+       ACCEPT       18 quintuple(s) executed
+
+------------------------------ TAPE  5 ---------------------------------
+bbcbb          a
+------------------------------------------------------------------------
+     [ 1>bbcbb
+     k[ 7>bcbb
+     kb[ 7>cbb
+     kbc[ 8>bb
+     kb[ 9>czb
+     k[ 9>bczb
+     [ 9>kbczb
+     k[ 1>bczb
+     kk[ 7>czb
+     kkc[ 8>zb
+     kkcz[ 8>b
+     kkc[ 9>zz
+     kk[ 9>czz
+     k[ 9>kczz
+     kk[ 1>czz
+     kkc[10>zz
+     kkcz[10>z
+     kkczz[10> 
+     kkczz1[11> 
+       ACCEPT       18 quintuple(s) executed
+
+------------------------------ TAPE  6 ---------------------------------
+abcab          a
+------------------------------------------------------------------------
+     [ 1>abcab
+     x[ 3>bcab
+     xb[ 3>cab
+     xbc[ 4>ab
+     xb[ 5>cyb
+     x[ 5>bcyb
+     [ 5>xbcyb
+     x[ 1>bcyb
+     xk[ 7>cyb
+     xkc[ 8>yb
+     xkcy[ 8>b
+     xkc[ 9>yz
+     xk[ 9>cyz
+     x[ 9>kcyz
+     xk[ 1>cyz
+     xkc[10>yz
+     xkcy[10>z
+     xkcyz[10> 
+     xkcyz1[11> 
+       ACCEPT       18 quintuple(s) executed
+
+------------------------------ TAPE  7 ---------------------------------
+bacba          a
+------------------------------------------------------------------------
+     [ 1>bacba
+     k[ 7>acba
+     ka[ 7>cba
+     kac[ 8>ba
+     ka[ 9>cza
+     k[ 9>acza
+     [ 9>kacza
+     k[ 1>acza
+     kx[ 3>cza
+     kxc[ 4>za
+     kxcz[ 4>a
+     kxc[ 5>zy
+     kx[ 5>czy
+     k[ 5>xczy
+     kx[ 1>czy
+     kxc[10>zy
+     kxcz[10>y
+     kxczy[10> 
+     kxczy1[11> 
+       ACCEPT       18 quintuple(s) executed
+
+------------------------------ TAPE  8 ---------------------------------
+abcabc         r
+------------------------------------------------------------------------
+     [ 1>abcabc
+     x[ 3>bcabc
+     xb[ 3>cabc
+     xbc[ 4>abc
+     xb[ 5>cybc
+     x[ 5>bcybc
+     [ 5>xbcybc
+     x[ 1>bcybc
+     xk[ 7>cybc
+     xkc[ 8>ybc
+     xkcy[ 8>bc
+     xkc[ 9>yzc
+     xk[ 9>cyzc
+     x[ 9>kcyzc
+     xk[ 1>cyzc
+     xkc[10>yzc
+     xkcy[10>zc
+     xkcyz[10>c
+       REJECT       17 quintuple(s) executed
+
+------------------------------ TAPE  9 ---------------------------------
+cab            r
+------------------------------------------------------------------------
+     [ 1>cab
+     c[10>ab
+       REJECT       1 quintuple(s) executed
+
+------------------------------ TAPE 10 ---------------------------------
+abc            r
+------------------------------------------------------------------------
+     [ 1>abc
+     x[ 3>bc
+     xb[ 3>c
+     xbc[ 4> 
+       REJECT       3 quintuple(s) executed
+
+------------------------------ TAPE 11 ---------------------------------
+acb            r
+------------------------------------------------------------------------
+     [ 1>acb
+     x[ 3>cb
+     xc[ 4>b
+     xcb[ 4> 
+       REJECT       3 quintuple(s) executed
+
+------------------------------ TAPE 12 ---------------------------------
+bca            r
+------------------------------------------------------------------------
+     [ 1>bca
+     k[ 7>ca
+     kc[ 8>a
+     kca[ 8> 
+       REJECT       3 quintuple(s) executed
+
+------------------------------ TAPE 13 ---------------------------------
+bcbb           r
+------------------------------------------------------------------------
+     [ 1>bcbb
+     k[ 7>cbb
+     kc[ 8>bb
+     k[ 9>czb
+     [ 9>kczb
+     k[ 1>czb
+     kc[10>zb
+     kcz[10>b
+       REJECT       7 quintuple(s) executed
+
+V7.0 t5.dougherty.tog: s9/q34/mqe18
+128b Report for Dougherty Kevin: Correct
+1189 Wed Apr 10 00:06:19 2013

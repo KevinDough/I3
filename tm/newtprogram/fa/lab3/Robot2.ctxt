@@ -1,0 +1,20 @@
+#BlueJ class context
+comment0.params=n\ p\ world\ pSenseRight\ pSenseWrong\ pHitMark\ pOverShoot\ pUnderShoot
+comment0.target=Robot2(int,\ double[],\ java.lang.String[],\ double,\ double,\ double,\ double,\ double)
+comment1.params=sensedValue
+comment1.target=void\ afterSensing(java.lang.String)
+comment1.text=Measurement\ update.\ After\ executing\ this\ method,\ the\ p\ array\ will\ hold\ an\ updated\ probability\ distribution
+comment2.params=
+comment2.target=void\ afterMoving()
+comment2.text=Motion\ update.\ After\ executing\ this\ method,\ the\ p\ array\ will\ hold\ an\ updated\ probability\ distribution.\n\ We\ are\ assuming\ here\ that\ if\ the\ robot\ is\ at\ X_i,\ it\ will\ move\ right\ to\ X_(i+2)\ with\ probability\ pHitMark,\ \novershoot\ to\ X_(i+3)\ with\ probability\ pOverShoot,\ and\ undershoot\ to\ X_(i+1)\ with\ probability\ pUnderShoot
+comment3.params=x\ y
+comment3.target=int\ mod(int,\ int)
+comment3.text=This\ modified\ modulus\ method\ ensures\ that\ the\ returned\ value\ is\ always\ non-negative,\ in\ contrast\ to\ Java's\ %\ operator
+comment4.params=q
+comment4.target=double[]\ normalize(double[])
+comment4.text=Method\ to\ Normalize\ a\ vector\ so\ that\ the\ elements\ sum\ to\ 1
+comment5.params=q
+comment5.target=void\ printArray(double[])
+comment6.params=args
+comment6.target=void\ main(java.lang.String[])
+numComments=7

@@ -1,0 +1,332 @@
+Pushdown Automata
+
+
+A finite automaton can be viewed as a finite-state mechanism with 
+a read head that reads the squares--one at a time--of an input 
+tape.  Depending on the symbol read from the input tape and the 
+current state, the machine goes to a new state.  It, at the same 
+time, moves right to the next square.  
+
+
+                        Finte Automaton
+
+
+                          input tape
+                      +---------------+
+                      | a | a | b | b |
+                      +---------------+
+                        ^  read head
+                        |
+                 +-----------------------+     
+                 | 1 (the current state) |
+                 +-----------------------+
+
+
+A pushdown automaton (pda) is an extension of this finite 
+automaton model.  It includes a stack that has no limitations on 
+its size.  Access to the stack is restricted to the symbol 
+currently on its top.  A pop operation removes the top symbol 
+from the stack, making the symbol below the popped symbol the new 
+top-of-the-stack symbol.  A push operation pushes a new symbol on 
+top of the stack, making the pushed symbol the new top-of-the-
+stack symbol.  
+
+The operation of the pda at every step depends on its current 
+state, the current input symbol (i.e., the symbol under the read 
+head), and the symbol on the top of the stack. 
+
+
+
+                                Pushdown Automaton
+
+
+                                    input tape
+                                +---------------+
+                                | a | a | b | b |
+                                +---------------+                                                  ^  read/write head
+                                  ^  read head
+                                  |
+                           +-----------------------+     
+                        +--| 1 (the current state) |
+                        |  +-----------------------+
+                        |
+                        |
+   top of stack | b |<--+ 
+                |---|
+                | a |
+                |---| stack
+                | a |
+                +---+
+
+
+
+Like the FA model, a pda has a single start state and a subset of 
+its states designated as final states (i.e., accept states). 
+
+The operation of a pda is defined by a set of quintuples.  Each 
+quintuple consists of the following five components:
+
+     CURRENTSTATE CURRENTINPUT TOPOFSTACK NEWSTATE PUSHSTRING
+
+CURRENTSTATE, CURRENTINPUT, and TOPOFSTACK specify the conditions 
+under which the action specified by NEWSTATE and PUSHSTRING are 
+to be performed. 
+
+When a quintuple is used during the operation of a pda, the 
+action it specifies is performed.  An action consists of the 
+following: 
+
+     Pop the stack.  Then push PUSHSTRING.  Note: if the 
+     TOPOFSTACK component of the quintuple is the null string 
+     (represented by ^), then the stack is not popped before 
+     PUSHSTRING is pushed. 
+
+     Move the read head right one square.  Note: if the 
+     CURRENTINPUT component of the quintuple is the null string 
+     (represented by ^), then the read head is not moved. 
+
+     Change the state to NEWSTATE.  NEWSTATE can be the same as 
+     the current state, in which case the state of the pda is not 
+     changed. 
+
+
+For example, consider the quintuple
+
+     1 b c 2 def
+                                      
+Because the first three components of this quintuple are 1 b c, 
+this quintuple can be used only if the current state is 1, the 
+current input is b, and the top of the stack is c.  The action (2 
+def) indicates the pda should change to state 2 and push the 
+string def (in right-to-left order so that d becomes the top 
+symbol on the stack) AFTER the current top symbol on the stack 
+(c) is popped. That is, first c is popped.  Then def is pushed. 
+
+The current input symbol and/or the top of the stack in a 
+quintuple can be the null string (represented by ^).  For 
+example, consider the quintuple, 
+
+     1 ^ c 2 def
+
+This quintuple can be used if The current state is 1 and the top 
+of the stack is c.  The current input symbol can be anything.  
+Moreover, if this quintuple is used, the pda does NOT advance to 
+the next symbol on the input tape.  Similarly, the following 
+quintuple 
+
+     1 b ^ 2 def 
+
+can be used if the current state is 1 and the current input is b.  
+The symbol on top of the stack can be anything.  Moreover, if this 
+quintuple is used, the symbol on top of the stack is NOT popped 
+before def is pushed.
+
+There are several variations of the pda model, depending on the 
+acceptance criteria:
+
+     accept by final state: pda accepts if it reads the entire 
+                            input tape and ends in a final state
+                            (i.e., an accept state).
+
+     accept by empty stack: pda accepts if it reads the entire 
+                            input tape and ends with an empty stack.
+
+     accept by final state and empty stack:
+                            pda accepts if it reads the entire 
+                            input  tape, ends in a final state 
+                            (i.e., an accept state), and ends 
+                            with an empty stack. 
+                              
+All three models are equivalent.  That is, any language that can 
+be defined by one can be defined by the other two.  
+
+The pda model is a nondeterministic model.  That is, it is 
+permissible for more that one quintuple to be applicable for a 
+given configuration, thereby allowing a choice of operations.  
+For example, a single pda can contain all these quintuples: 
+
+     1 b c 2 bbb
+     1 b c 3 ccc
+     1 ^ c 4 ddd
+     1 b ^ 5 eee
+     1 ^ ^ 6 fff
+
+If the current state is 1, the current input is b, and the top 
+of the stack is c, then any of these five quintuples could be used.
+
+Deterministic pda's (i.e., pda's whose quintuple set does not 
+allow any choices) are less powerful than the nondeterministic 
+pda's.  That is, there are some languages that can be defined by 
+a nondeterministic pda but not by a deterministic pda. But all 
+languages that can be defined by a deterministic pda can be 
+defined by a nondeterministic pda.  Remember, the 
+nondeterministic model allows choice--it does not require choice.  
+Thus, deterministic pda's are special cases of nondeterministic 
+pda's. This means that anything a deterministic pda can do, a 
+nondeterministic pda can also do (because a deterministic pda IS 
+a nondeterministic pda).  But the reverse is not true.  For 
+example, a nondeterministic pda can define the language of all 
+palindromes over {b,c}, but a deterministic pda cannot. 
+
+The nondeterministic pda model is equivalent in power to context-
+free grammars.  That is, a language that can be defined by a non-
+deterministic pda if and only if it can be defined by a context-
+free grammar.  For example, both a nondeterministic pda and a 
+context-free grammar can define the language of all palindromes 
+over the alphabet {b, c}.  If a pda cannot define a language, 
+then a context-free grammar also cannot define that language, and 
+vice versa.  For example, both a pda and a context-free grammar 
+cannot define the language {b^nc^nd^n : n >= 0}. 
+
+The equivalence of context-free grammars and pda's is an 
+extraordinary result: They are completely different mechanisms 
+but they are intimately connected.  
+ 
+Let's determine the quintuples of the pda that defines the same 
+language as the following context-free grammar:
+
+     S -> AB
+     A -> a
+     B -> b
+
+The quintuples are determined from the productions of the 
+grammar.  The pda starts by pushing the bottom-of-stack marker 
+($) and the start symbol (S) of the grammar onto the stack.  It 
+then replaces the start symbol and the nonterminals it ultimately 
+generates using the productions of the grammar, thereby 
+generating a terminal string.  The pda concurrently checks if the 
+generated terminal string matches the input string.  If it does, 
+then the input string is in the language defined by the grammar.  
+If it is impossible for the pda to generate the input string, 
+then the input string is not in the language defined by the 
+grammar. 
+
+Here is the steps that construct the pda:
+
+The start state is 0; the final (i.e., accept) state set is {2}. 
+The pda starts by pushing $ (the bottom-of-stack marker) and S 
+(the start symbol of the grammar), and changing to state 1: 
+
+     0 ^ ^ 1 S$
+
+Whenever a nonterminal is on top of the stack, the pda pops the 
+nonterminal and then pushes the right side of the production for 
+that nonterminal.  If there is more that one production for a 
+nonterminal, then there will be more than one quintuple that can 
+be used to replace the nonterminal on top of the stack.  In this 
+case, the pda nondeterministically chooses one.  Our grammar 
+has three productions, each yielding a quintuple:  
+
+     1 ^ S 1 AB     replaces S with AB
+     1 ^ A 1 a      replaces A with a
+     1 ^ B 1 b      replaces B with b
+
+Whenever a terminal is on top of the stack, the current input 
+symbol should match it, in which case both symbols are discarded 
+(by popping and advancing):  
+               
+     1 a a 1 ^      matches generated a with a in the input
+     1 b b 1 ^      matches generated b with b in the input
+
+When the stack goes empty (i.e., $ becomes the top-of-stack 
+symbol), the pda goes into state 2, the final (i.e., accept) 
+state.  If at this point the input string is completely read, the 
+pda accepts. 
+
+     1 ^ $ 2 ^      goes to final (i.e., accept) state when stack goes empty
+
+The pda constructed in this way can end up in state 2 with the 
+input string completely read if and only if the input string can 
+be generated by the given grammar. Thus, the pda defines the same 
+language as the given grammar. 
+
+The general approach used in the preceding example can be used 
+for any context-free grammar.  This means that, given a context-
+free grammar, a pda can always be constructed that defines the 
+same language.  The converse is also true (but difficult to 
+prove):  Given a pda, a context-free grammar can be constructed 
+that defines the same language (for a proof, see An Introduction 
+to Formal Languages and Automata by Peter Linz, Jones and 
+Bartlett). 
+
+The pda constructed above for the given context-free grammar is 
+deterministic.  However, in general the pda constructed using 
+this technique will be nondeterministic.  For example, the pda 
+corresponding to 
+
+     S -> a
+     S -> b
+
+is
+
+     0 ^ ^ 1 S$
+     1 ^ S 1 a
+     1 ^ S 1 b
+     1 a a 1 ^
+     1 b b 1 ^
+     1 ^ $ 2 ^
+
+Note that two quintuples apply when the pda is in state 1 with S 
+on top of the stack.  Thus, the pda is not deterministic.  
+
+
+Problems
+
+Construct a deterministic pda for each of the following languages.  
+Run on the p simulator. For instructions on the p simulator, see 
+p.txt. 
+
+3) bb*    
+   Define the pda in the file q3.p.  Test with q3.pp. 
+
+4) {a^nb^(2n) : n > 0}
+   Define the pda in the file q4.p.  Test with q4.pp. 
+
+5) The set of all strings over {a, b} in which the number of a's 
+   does not equal the number of b's.  Define the pda in the file 
+   q5.p. Test with q5.pp. 
+
+6) {wcw^r : w is a string over {a, b}}.  Define the pda in the 
+   file q6.p.  Test with q6.pp.
+
+7) {a^(i+j)b^ic^j : i, j >= 0}.  Define the pda in the file q7.p.  
+   Test with q7.pp.
+
+8) a*b*c  Define the pda in the file q8.p.  Test with q8.pp.
+
+9) (a*|b*)c  Define the pda in the file q9.p.  Test with q9.pp.
+
+10) The set containing the null string only. 
+    Define the pda in the file q10.pp.  Test with q10.pp.
+
+11) The language defined by
+
+    S -> BD
+    B -> bB
+    B -> c
+    D -> dD
+    D -> e
+
+    Hint: For the B and D productions, do NOT use the technique 
+    illustrated above for converting a context-free grammar to a 
+    pda (it will yield a pda that is not deterministic).  
+    Instead, do this:  If B is on the top of the stack and b is 
+    the current input, then pop, push B, and advance.  If B is on 
+    top of the stack and c is the current input, then pop, push 
+    the null string, and advance.  If D is on top of the stack 
+    and the current input is d, then pop, push D, and advance.  
+    If the top of the stack is D and the current input is e, then 
+    pop, push the null string, and advance. 
+
+12) Try to construct a deterministic pda that defines the 
+    language of all palindromes over {b, c}.  You won't be able 
+    to do it (because it is impossible to do).  However, a 
+    nondeterministic pda can define this language.  Define such a 
+    pda (but don't run it on the simulator--the simulator works 
+    only for deterministic pda's). 
+
+13) Write a context-free grammar that defines the set of all 
+    palindromes over the alphabet {b, c}.  Using the construction 
+    technique described above, convert your grammar to a pda. Do 
+    not run on the simulator (your pda will not be deterministic 
+    so you cannot run it on the simulator). 

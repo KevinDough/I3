@@ -1,0 +1,9 @@
+?                                                            a
+ab                                                           a
+ba                                                           a
+abba                                                         a
+baab                                                         a
+ababab                                                       a
+abb                                                          r
+aab                                                          r
+aabbb                                                        r

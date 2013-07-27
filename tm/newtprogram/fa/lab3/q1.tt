@@ -1,0 +1,9 @@
+bc                                                     a
+bbcc                                                   a
+bbbccc                                                 a
+?                 Represents a completely blank tape   r
+b                                                      r
+c                                                      r
+bcc                                                    r
+bbc                                                    r
+bb???cc           3 embedded blanks                    r

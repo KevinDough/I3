@@ -1,0 +1,22 @@
+#BlueJ class context
+comment0.params=
+comment0.target=java.lang.Object\ getValue()
+comment0.text=\r\n\ An\ optional\ attribute\ value\ of\ the\ Token.\r\n\ Tokens\ which\ are\ not\ used\ as\ syntactic\ sugar\ will\ often\ contain\r\n\ meaningful\ values\ that\ will\ be\ used\ later\ on\ by\ the\ compiler\ or\r\n\ interpreter.\ This\ attribute\ value\ is\ often\ different\ from\ the\ image.\r\n\ Any\ subclass\ of\ Token\ that\ actually\ wants\ to\ return\ a\ non-null\ value\ can\r\n\ override\ this\ method\ as\ appropriate.\r\n
+comment1.params=
+comment1.target=Token()
+comment1.text=\r\n\ No-argument\ constructor\r\n
+comment2.params=kind
+comment2.target=Token(int)
+comment2.text=\r\n\ Constructs\ a\ new\ token\ for\ the\ specified\ Image.\r\n
+comment3.params=kind\ image
+comment3.target=Token(int,\ java.lang.String)
+comment3.text=\r\n\ Constructs\ a\ new\ token\ for\ the\ specified\ Image\ and\ Kind.\r\n
+comment4.params=
+comment4.target=java.lang.String\ toString()
+comment4.text=\r\n\ Returns\ the\ image.\r\n
+comment5.params=ofKind\ image
+comment5.target=Token\ newToken(int,\ java.lang.String)
+comment5.text=\r\n\ Returns\ a\ new\ Token\ object,\ by\ default.\ However,\ if\ you\ want,\ you\r\n\ can\ create\ and\ return\ subclass\ objects\ based\ on\ the\ value\ of\ ofKind.\r\n\ Simply\ add\ the\ cases\ to\ the\ switch\ for\ all\ those\ special\ cases.\r\n\ For\ example,\ if\ you\ have\ a\ subclass\ of\ Token\ called\ IDToken\ that\r\n\ you\ want\ to\ create\ if\ ofKind\ is\ ID,\ simply\ add\ something\ like\ \:\r\n\r\n\ \ \ \ case\ MyParserConstants.ID\ \:\ return\ new\ IDToken(ofKind,\ image);\r\n\r\n\ to\ the\ following\ switch\ statement.\ Then\ you\ can\ cast\ matchedToken\r\n\ variable\ to\ the\ appropriate\ type\ and\ use\ sit\ in\ your\ lexical\ actions.\r\n
+comment6.params=ofKind
+comment6.target=Token\ newToken(int)
+numComments=7

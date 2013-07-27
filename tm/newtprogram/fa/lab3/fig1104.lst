@@ -1,0 +1,21 @@
+a Assembler Version 1.7    Wed Jan 30 08:08:33 2013
+
+  LOC   MACHINE      ASSEMBLY
+hex*dec  CODE          CODE
+
+0  *0    000A            p         @1   ; push 1
+1  *1    1002            pc        2    ; push 2
+2  *2    F100            add            ; pop twice, add, push
+3  *3    F700            pwc       4    ; push 4
+4  *4    0004
+5  *5    F100            add            ; pop twice, add, push
+6  *6    FFFD            dout           ; pop and display
+7  *7    100A            pc        '\n' ; push newline
+8  *8    FFFB            aout           ; pop and output
+9  *9    FFFF            halt           ; terminate
+A  *10   0001  @1:       dw        1    ; data
+B  *11   ========= end of fig1104.a ========================
+
+asm in  = fig1104.a
+asm out = fig1104.e
+asm lst = fig1104.lst 

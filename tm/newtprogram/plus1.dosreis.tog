@@ -1,0 +1,54 @@
+Turing Machine Simulator Version 5.0       Tue Mar 12 11:04:01 2013
+
+Your name:       DosReis Anthony J
+tog file:        plus1.dosreis.tog
+Tape file:       plus1.t
+Definition file: plus1.tm
+
+// This Turing machine computes the function f(n) = n + 1
+0                  start state
+{}                 no final states--this TM computes a function
+
+0 1 1 r 0          
+0 ? 1 r 2
+
+Total number of states     = 2
+Total number of quintuples = 2
+
+------------------------------ TAPE  1 ---------------------------------
+^               1             ^ (the null string) is unary for 0
+------------------------------------------------------------------------
+     [0> 
+     1[2> 
+
+       1 quintuple(s) executed
+       1's left on tape: 1
+       1's expected:     1
+
+------------------------------ TAPE  2 ---------------------------------
+1               2             1 is unary for 1
+------------------------------------------------------------------------
+     [0>1
+     1[0> 
+     11[2> 
+
+       2 quintuple(s) executed
+       1's left on tape: 2
+       1's expected:     2
+
+------------------------------ TAPE  3 ---------------------------------
+111             4             111 is unary for 3
+------------------------------------------------------------------------
+     [0>111
+     1[0>11
+     11[0>1
+     111[0> 
+     1111[2> 
+
+       4 quintuple(s) executed
+       1's left on tape: 4
+       1's expected:     4
+
+tog file = plus1.dosreis.tog  2/2/4/4
+7df3 Report for DosReis Anthony J: Correct
+4cfa Tue Mar 12 11:04:01 2013

@@ -1,0 +1,260 @@
+; from S4 compiler written by Kevin Dougherty
+;    x = +3 + -2 + 1;
+          pc        x
+          pwc       3
+          pwc       -2
+          add 
+          pwc       1
+          add 
+          stav
+;    y = x;
+          pc        y
+          p         x
+          stav
+;    z = x*(2 + y) + (((4099)));
+          pc        z
+          p         x
+          pwc       2
+          p         y
+          add 
+          mult
+          pwc       4099
+          add 
+          stav
+;    println(z + x + -2);
+          p         z
+          p         x
+          add 
+          pwc       -2
+          add 
+          dout
+          pc        '\n'
+          aout
+;    println(4107);
+          pwc       4107
+          dout
+          pc        '\n'
+          aout
+;    println("S1 test done");
+^@L0:     dw        "S1 test done"
+          pc        @L0
+          sout
+          pc        '\n'
+          aout
+; //==========================================================
+; // Add support for subtraction, division, null statement, 
+; // compound statement, print statement, and single-line
+; // comments.
+;    println((z - (x - 50)   // comment in middle of statement
+          p         z
+          p         x
+          pwc       50
+          sub 
+;         ) / 2 - x);
+          sub 
+          pwc       2
+          div 
+          p         x
+          sub 
+          dout
+          pc        '\n'
+          aout
+;    println(2075);
+          pwc       2075
+          dout
+          pc        '\n'
+          aout
+;    ;                       // null statement 
+;    {{;                     // compound statement
+;       {
+;       x = 10;  
+          pc        x
+          pwc       10
+          stav
+;       ;
+;       y = 20;
+          pc        y
+          pwc       20
+          stav
+;    }};}
+;    {}
+;    print(x);
+          p         x
+          dout
+;    println(x);
+          p         x
+          dout
+          pc        '\n'
+          aout
+;    println(1010);
+          pwc       1010
+          dout
+          pc        '\n'
+          aout
+;    println(y);
+          p         y
+          dout
+          pc        '\n'
+          aout
+;    println(20);
+          pwc       20
+          dout
+          pc        '\n'
+          aout
+;    x = 1 + (2 + (3+ 4));
+          pc        x
+          pwc       1
+          pwc       2
+          pwc       3
+          pwc       4
+          add 
+          add 
+          add 
+          stav
+;    println(x);
+          p         x
+          dout
+          pc        '\n'
+          aout
+;    println(10);
+          pwc       10
+          dout
+          pc        '\n'
+          aout
+;    x = 1 + 2 + 3 + 4 + 5;
+          pc        x
+          pwc       1
+          pwc       2
+          add 
+          pwc       3
+          add 
+          pwc       4
+          add 
+          pwc       5
+          add 
+          stav
+;    println(x);
+          p         x
+          dout
+          pc        '\n'
+          aout
+;    println(15);
+          pwc       15
+          dout
+          pc        '\n'
+          aout
+;    println("S2 test done");
+^@L1:     dw        "S2 test done"
+          pc        @L1
+          sout
+          pc        '\n'
+          aout
+; //==========================================================
+; // Add support, println with zero arguments, println and 
+; // print with string argument,  cascaded assignment 
+; // statement, unary plus and minus, and readint statement.
+;    println("four lines follow");
+^@L2:     dw        "four lines follow"
+          pc        @L2
+          sout
+          pc        '\n'
+          aout
+;    print("one line");
+^@L3:     dw        "one line"
+          pc        @L3
+          sout
+;    println();
+          pc        '\n'
+          aout
+;    println("one line");
+^@L4:     dw        "one line"
+          pc        @L4
+          sout
+          pc        '\n'
+          aout
+;    println("third line\nfourth line");
+^@L5:     dw        "third line\nfourth line"
+          pc        @L5
+          sout
+          pc        '\n'
+          aout
+;    x = y = z = + - - - - - + -7;
+          pc        x
+          pc        y
+          pc        z
+          pwc       -7
+          neg 
+          dupe
+          rot 
+          stav
+          dupe
+          rot 
+          stav
+          stav
+;    print(x);
+          p         x
+          dout
+;    print(" = ");
+^@L6:     dw        " = "
+          pc        @L6
+          sout
+;    print(y);
+          p         y
+          dout
+;    print(" = ");
+^@L7:     dw        " = "
+          pc        @L7
+          sout
+;    print(z);
+          p         z
+          dout
+;    print(" = ");
+^@L8:     dw        " = "
+          pc        @L8
+          sout
+;    println(7);
+          pwc       7
+          dout
+          pc        '\n'
+          aout
+;    z = -(+x - + + - + + - + + + + - + + - + + -y);
+          pc        z
+          p         x
+          p         y
+          neg 
+          neg 
+          neg 
+          neg 
+          neg 
+          sub 
+          neg 
+          stav
+;    print ("-14 = ");
+^@L9:     dw        "-14 = "
+          pc        @L9
+          sout
+;    print(z);
+          p         z
+          dout
+;    print(" = ");
+^@L10:    dw        " = "
+          pc        @L10
+          sout
+;    println(-(-(+(-(14))))); 
+          pwc       14
+          neg 
+          neg 
+          neg 
+          dout
+          pc        '\n'
+          aout
+;    // no comment in following statement because // inside string
+;    println("////Enter integer////");   
+;    readint(q);
+^@L11:    dw        ""
+          pc        @L11
+          sout
+          pc        '\n'
+          aout
+Encountered "readint" on line 58, column 4.
+Expecting ")"

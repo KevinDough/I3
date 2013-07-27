@@ -1,0 +1,20 @@
+e Version 1.7
+Log file fig1104.dougherty.log
+
+Your name:          Dougherty Kevin R
+Machinecode file:   fig1104.e   
+Check file:         fig1104.chk
+Check data:         fa89 11 9 101 d227
+
+=================== Wed Jan 30 08:08:56 2013 ==============r
+7
+
+===========================================================r
+
+Report for:         Dougherty Kevin R
+Program output:     correct
+Machine code size:  11     (at limit)
+Machine inst count: 9      (at limit)
+Execution time:     101    (at limit)
+
+================ r(4f1b) terminated Wed Jan 30 08:08:56 2013

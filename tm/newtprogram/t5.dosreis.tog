@@ -1,0 +1,254 @@
+Turing Machine Simulator Version 5.0       Tue Mar 12 14:38:59 2013
+
+Your name:       DosReis Anthony J
+tog file:        t5.dosreis.tog
+Tape file:       t5.t
+Definition file: t5.tm
+
+1
+{6}
+
+1 a x R 2     state two will be the c finder
+2 a a R 2     go till find c
+2 b b R 2     screw b's, i want c
+2 c c R 3     state three is new side xy
+3 y y R 3     screw the other y's i need to find a
+3 a y L 4     screw a, heres a y
+4 y y L 4     go back
+4 q q L 4
+4 c c L 7     passingc
+7 x x R 1     for the specail case of seeing an x right after c (a's done)
+7 a a L 4     once past, go back to shifting left
+7 b b L 4
+4 a a L 4
+4 b b L 4
+4 x x R 1
+4 ? ? R 1
+
+1 b z R 2    b is now z, find the c
+3 b q L 8    far b's are q
+3 q q R 3
+8 q q L 8    8 will get us back to z
+8 c c L 9
+8 y y L 8
+9 z z R 1
+9 b b L 8
+9 a a L 9
+8 a a L 8
+8 b b L 8
+8 z z R 1
+1 c c R 5
+5 y y R 5
+5 q q R 5
+5 ? ? R 6
+
+Total number of states     = 9
+Total number of quintuples = 32
+
+------------------------------ TAPE  1 ---------------------------------
+c                                                   a
+------------------------------------------------------------------------
+     [1>c
+     c[5> 
+     c [6> 
+       ACCEPT       2 quintuple(s) executed
+
+------------------------------ TAPE  2 ---------------------------------
+aca                                                 a
+------------------------------------------------------------------------
+     [1>aca
+     x[2>ca
+     xc[3>a
+     x[4>cy
+     [7>xcy
+     x[1>cy
+     xc[5>y
+     xcy[5> 
+     xcy [6> 
+       ACCEPT       8 quintuple(s) executed
+
+------------------------------ TAPE  3 ---------------------------------
+bcb                                                 a
+------------------------------------------------------------------------
+     [1>bcb
+     z[2>cb
+     zc[3>b
+     z[8>cq
+     [9>zcq
+     z[1>cq
+     zc[5>q
+     zcq[5> 
+     zcq [6> 
+       ACCEPT       8 quintuple(s) executed
+
+------------------------------ TAPE  4 ---------------------------------
+aacaa                                               a
+------------------------------------------------------------------------
+     [1>aacaa
+     x[2>acaa
+     xa[2>caa
+     xac[3>aa
+     xa[4>cya
+     x[7>acya
+     [4>xacya
+     x[1>acya
+     xx[2>cya
+     xxc[3>ya
+     xxcy[3>a
+     xxc[4>yy
+     xx[4>cyy
+     x[7>xcyy
+     xx[1>cyy
+     xxc[5>yy
+     xxcy[5>y
+     xxcyy[5> 
+     xxcyy [6> 
+       ACCEPT       18 quintuple(s) executed
+
+------------------------------ TAPE  5 ---------------------------------
+bbcbb                                               a
+------------------------------------------------------------------------
+     [1>bbcbb
+     z[2>bcbb
+     zb[2>cbb
+     zbc[3>bb
+     zb[8>cqb
+     z[9>bcqb
+     [8>zbcqb
+     z[1>bcqb
+     zz[2>cqb
+     zzc[3>qb
+     zzcq[3>b
+     zzc[8>qq
+     zz[8>cqq
+     z[9>zcqq
+     zz[1>cqq
+     zzc[5>qq
+     zzcq[5>q
+     zzcqq[5> 
+     zzcqq [6> 
+       ACCEPT       18 quintuple(s) executed
+
+------------------------------ TAPE  6 ---------------------------------
+abcab                                               a
+------------------------------------------------------------------------
+     [1>abcab
+     x[2>bcab
+     xb[2>cab
+     xbc[3>ab
+     xb[4>cyb
+     x[7>bcyb
+     [4>xbcyb
+     x[1>bcyb
+     xz[2>cyb
+     xzc[3>yb
+     xzcy[3>b
+     xzc[8>yq
+     xz[8>cyq
+     x[9>zcyq
+     xz[1>cyq
+     xzc[5>yq
+     xzcy[5>q
+     xzcyq[5> 
+     xzcyq [6> 
+       ACCEPT       18 quintuple(s) executed
+
+------------------------------ TAPE  7 ---------------------------------
+bacba                                               a
+------------------------------------------------------------------------
+     [1>bacba
+     z[2>acba
+     za[2>cba
+     zac[3>ba
+     za[8>cqa
+     z[9>acqa
+     [9>zacqa
+     z[1>acqa
+     zx[2>cqa
+     zxc[3>qa
+     zxcq[3>a
+     zxc[4>qy
+     zx[4>cqy
+     z[7>xcqy
+     zx[1>cqy
+     zxc[5>qy
+     zxcq[5>y
+     zxcqy[5> 
+     zxcqy [6> 
+       ACCEPT       18 quintuple(s) executed
+
+------------------------------ TAPE  8 ---------------------------------
+abcabc                                              r
+------------------------------------------------------------------------
+     [1>abcabc
+     x[2>bcabc
+     xb[2>cabc
+     xbc[3>abc
+     xb[4>cybc
+     x[7>bcybc
+     [4>xbcybc
+     x[1>bcybc
+     xz[2>cybc
+     xzc[3>ybc
+     xzcy[3>bc
+     xzc[8>yqc
+     xz[8>cyqc
+     x[9>zcyqc
+     xz[1>cyqc
+     xzc[5>yqc
+     xzcy[5>qc
+     xzcyq[5>c
+       REJECT       17 quintuple(s) executed
+
+------------------------------ TAPE  9 ---------------------------------
+cab                                                 r
+------------------------------------------------------------------------
+     [1>cab
+     c[5>ab
+       REJECT       1 quintuple(s) executed
+
+------------------------------ TAPE 10 ---------------------------------
+abc                                                 r
+------------------------------------------------------------------------
+     [1>abc
+     x[2>bc
+     xb[2>c
+     xbc[3> 
+       REJECT       3 quintuple(s) executed
+
+------------------------------ TAPE 11 ---------------------------------
+acb                                                 r
+------------------------------------------------------------------------
+     [1>acb
+     x[2>cb
+     xc[3>b
+     x[8>cq
+     [9>xcq
+       REJECT       4 quintuple(s) executed
+
+------------------------------ TAPE 12 ---------------------------------
+bca                                                 r
+------------------------------------------------------------------------
+     [1>bca
+     z[2>ca
+     zc[3>a
+     z[4>cy
+     [7>zcy
+       REJECT       4 quintuple(s) executed
+
+------------------------------ TAPE 13 ---------------------------------
+bcbb                                                r
+------------------------------------------------------------------------
+     [1>bcbb
+     z[2>cbb
+     zc[3>bb
+     z[8>cqb
+     [9>zcqb
+     z[1>cqb
+     zc[5>qb
+     zcq[5>b
+       REJECT       7 quintuple(s) executed
+
+tog file = t5.dosreis.tog  9/32/18
+128b Report for DosReis Anthony J: Correct
+a1e4 Tue Mar 12 14:38:59 2013

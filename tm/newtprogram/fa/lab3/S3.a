@@ -1,0 +1,99 @@
+; from S3 compiler written by Kevin Dougherty
+;    x = +3 + -2 + 1;
+          pc        x
+          pwc       3
+          pwc       -2
+          add 
+          pwc       1
+          add 
+          stav
+;    y = x;
+          pc        y
+          p         x
+          stav
+;    z = x*(2 + y) + (((4099)));
+          pc        z
+          p         x
+          pwc       2
+          p         y
+          add 
+          mult
+          pwc       4099
+          add 
+          stav
+;    println(z + x + -2);
+          p         z
+          p         x
+          add 
+          pwc       -2
+          add 
+          dout
+          pc        '\n'
+          aout
+;    println(4107);
+          pwc       4107
+          dout
+          pc        '\n'
+          aout
+;    println("S1 test done");
+; //==========================================================
+; // Add support for subtraction, division, null statement, 
+; // compound statement, print statement, and single-line
+; // comments.
+;    println((z - (x - 50)   // comment in middle of statement
+;         ) / 2 - x);
+;    println(2075);
+;    ;                       // null statement 
+;    {{;                     // compound statement
+;       {
+;       x = 10;  
+;       ;
+;       y = 20;
+;    }};}
+;    {}
+;    print(x);
+;    println(x);
+;    println(1010);
+;    println(y);
+;    println(20);
+;    x = 1 + (2 + (3+ 4));
+;    println(x);
+;    println(10);
+;    x = 1 + 2 + 3 + 4 + 5;
+;    println(x);
+;    println(15);
+;    println("S2 test done");
+          pc        @L0
+          sout
+          ^@L0      println"S1 test done"
+          pc        '\n'
+          aout
+Encountered "println"S1 test done"");
+
+
+
+
+   println((z - (x - 50)   
+        ) / 2 - x);
+   println(2075);
+   ;                       
+   {{;                     
+      {
+      x = 10;  
+      ;
+      y = 20;
+   }};}
+   {}
+   print(x);
+   println(x);
+   println(1010);
+   println(y);
+   println(20);
+   x = 1 + (2 + (3+ 4));
+   println(x);
+   println(10);
+   x = 1 + 2 + 3 + 4 + 5;
+   println(x);
+   println(15);
+   println("" on line 6, column 25.
+Expecting ")"
